@@ -1,0 +1,39 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: >
+  Secure Incident Reporting System - FastAPI + Mangum + PostgreSQL (Optional RDS)
+
+Globals:
+  Function:
+    Timeout: 30
+    MemorySize: 512
+    Runtime: python3.11
+    Environment:
+      Variables:
+        DATABASE_URL: "your_postgres_url_here"
+        SECRET_KEY: "your_secret_key_here"
+        ALGORITHM: "HS256"
+
+Resources:
+  FastApiFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: app.main.handler  # app/main.py → handler = Mangum(app)
+      CodeUri: .
+      Events:
+        Api:
+          Type: Api
+          Properties:
+            Path: /{proxy+}
+            Method: ANY
+      Policies:
+        - AWSLambdaBasicExecutionRole
+        # Optional RDS access example:
+        # - AmazonRDSFullAccess
+      Architectures:
+        - x86_64
+
+Outputs:
+  ApiUrl:
+    Description: "API Gateway endpoint"
+    Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/"
