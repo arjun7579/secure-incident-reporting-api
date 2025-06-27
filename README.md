@@ -42,8 +42,8 @@ secure-incident-reporting/
 │   ├── api/               # Routers (auth, incidents)
 │   ├── core/              # Configs, security
 │   ├── db/                # Models, database session
+│   ├── schemas/           # Schemas of Incident,Token,User
 │   └── main.py            # FastAPI app entrypoint
-├── tests/                 # (Optional) Pytest test cases
 ├── Dockerfile
 ├── docker-compose.yml
 ├── requirements.txt
@@ -57,7 +57,7 @@ secure-incident-reporting/
 
 ```bash
 # Build and start containers
-docker-compose up --build
+docker compose up --build
 
 # Visit the API docs at:
 # 👉 http://localhost:8000/docs (Swagger)
