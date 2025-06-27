@@ -14,7 +14,6 @@ A secure, role-based API backend for reporting and tracking security incidents. 
 - ✅ **JWT Token Auth** (via Swagger Authorize)
 - ✅ **Dockerized** (PostgreSQL + FastAPI stack)
 - ✅ **AWS Lambda compatible** (via `Mangum`)
-- ✅ **CI with GitHub Actions** + `.env` secret injection
 - ✅ **Custom OpenAPI schema** (for proper Swagger UI behavior)
 
 ---
